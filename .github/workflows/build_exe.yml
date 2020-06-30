@@ -1,0 +1,38 @@
+name: build pre-compiled exe
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: download AHK
+        run: curl -O https://www.autohotkey.com/download/ahk.zip
+      - name: extract AHK
+        run: Expand-Archive -Path ahk.zip -DestinationPath ahk
+        shell: powershell
+      - name: prepare for compile
+        run: ren .\ahk\AutoHotKeyU64.exe AutoHotKey.exe
+      - name: compile script
+        run: .\ahk\Compiler\Ahk2Exe.exe /in .\macaron_us.ahk /out .\macaron_us_u64.exe
+      - name: upload release asset
+        uses: actions/upload-release-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: .\macaron_us_u64.exe
+          asset_name: macaron_us_u64.exe
+          asset_content_type: application/octet-stream
