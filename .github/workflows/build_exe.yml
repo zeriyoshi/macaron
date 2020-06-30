@@ -26,7 +26,7 @@ jobs:
       - name: prepare for compile
         run: ren .\ahk\AutoHotKeyU64.exe AutoHotKey.exe
       - name: compile script
-        run: .\ahk\Compiler\Ahk2Exe.exe /in .\macaron_us.ahk /out .\macaron_us_u64.exe
+        run: .\ahk\Compiler\Ahk2Exe.exe /in .\macaron_us.ahk /icon .\resources\macaron.ico /out .\macaron_us_u64.exe
       - name: upload release asset
         uses: actions/upload-release-asset@master
         env:
