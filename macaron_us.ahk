@@ -25,6 +25,7 @@
 #o::Send, ^{o}                  ; Open
 #q::Send, !{F4}                 ; Quit Application
 #f::Send, ^{f}                  ; Search
+#k::Send, ^{k}                  ; Slack and Discord Navigation
 #Left::Send, {Home}             ; Home
 #+Left::Send, +{Home}           ; Home with selection
 #Right::Send, {End}             ; End
@@ -35,6 +36,8 @@
 #+Down::Send, +{PgDn}           ; Page Down with selection
 #BackSpace::Send, {BackSpace}   ; Delete forward
 #Enter::Send, ^{Enter}          ; Send message
+#Space::Send, #{s}              ; Search Anywhere
+#+4::Send, #+{s}                ; Screenshot
 
 ; Explorer Finder like operation.
 #IfWinActive ahk_class CabinetWClass
