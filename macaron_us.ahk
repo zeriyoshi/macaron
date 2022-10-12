@@ -1,13 +1,13 @@
 /*
  * macaron
  *
- * rev: 20200630
+ * rev: 2022-10-13
  */
 
 ; IME Control
 ^Space::Send, {vkF3sc029}       ; IME toggle
 
-; General keKey Shortcuts
+; General Key Shortcuts
 #a::Send, ^{a}                  ; Select all
 #x::Send, ^{x}                  ; Cut
 #c::Send, ^{c}                  ; Copy
@@ -18,7 +18,7 @@
 #+s::Send, ^+{s}                ; Save another name
 #n::Send, ^{n}                  ; New Window
 #t::Send, ^{t}                  ; New Tab
-#l::Send, {F6}                  ; Focus to URI bar (install workaround_win_l.reg)
+#l::Send, {F6}                  ; Focus to URI bar (require workaround_win_l.reg)
 #r::Send, ^{r}                  ; Reload
 #+r::Send, ^+{r}                ; Super Reload
 #w::Send, ^{w}                  ; Close
@@ -36,8 +36,9 @@
 #+Down::Send, +{PgDn}           ; Page Down with selection
 #BackSpace::Send, {BackSpace}   ; Delete forward
 #Enter::Send, ^{Enter}          ; Send message
-#Space::Send, #{s}              ; Search Anywhere
+#Space::Send, #{s}              ; Spotlight
 #+4::Send, #+{s}                ; Screenshot
+#+^+4::Send, #+{s}, #+{s}       ; Screenshot
 
 ; Explorer Finder like operation.
 #IfWinActive ahk_class CabinetWClass
